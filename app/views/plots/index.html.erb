@@ -1,10 +1,11 @@
-<div class="list_plot_numbers_and_plant_names">
-  <% @plots.each do |plot| %>
+<% @plots.each do |plot| %>
+  <div class="list_plot_numbers_<%= plot.number %>">
     <ul>
       <li>Plot Number: <%= plot.number %></li>
       <% plot.plants.each do |plant| %>
           <li>Plant Name: <%= plant.name %></li>
+          <%= button_to "Remove #{plant.name} from Plot #{plot.number}", plot_plot_plant_path(plot.id, plant.id), method: :delete, data: {turbo:false}, local: true %>
       <% end %>
     </ul>
-  <% end %>
-</div>
+  </div>
+<% end %>

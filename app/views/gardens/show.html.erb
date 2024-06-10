@@ -1,9 +1,7 @@
 <section id="garden-<%= @garden.id %>">
 <h1><%= @garden.name %></h1>
 <p> Plants: </p>
-<% @garden.plots.each do |plot| %> 
-  <% plot.plants.each do |plant| %>
+<% @garden.ordered_plants.each do |plant| %> 
     <%= plant.name %>
-    <% end %>
 <% end %>
 </section>

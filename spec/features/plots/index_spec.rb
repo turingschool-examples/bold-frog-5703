@@ -36,5 +36,26 @@ RSpec.describe 'Plots index page' do
       expect(page).to have_content(@plant2.name)
       expect(page).to_not have_content(@plant3.name)
     end
+
+    it 'I see a link to remove a plant from a plot' do
+      PlantPlot.create!(plant: @plant1, plot: @Plot1)
+      PlantPlot.create!(plant: @plant1, plot: @Plot2)
+
+      visit plots_path
+
+      within("##{@Plot1.id}") do  
+        click_button('Remove Plant')
+      end
+
+      expect(current_path).to eq(plots_path)
+
+      within("##{@plot1.id}") do
+        expect(page).to_not have_content(@plant1.name)
+      end
+
+      within("##{@plot2.id}") do
+        expect(page).to have_content(@plant1.name)
+      end
+    end
   end
 end

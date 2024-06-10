@@ -1,6 +1,7 @@
 <h1>Plots</h1>
 <ul>
   <% @plots.each do |plot| %>
+    <div class="<% plot.id %>">
     <li>Plot: <%= plot.number %></li>
     <li>Plants:</li>
     <ol>

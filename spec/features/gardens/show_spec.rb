@@ -16,7 +16,7 @@ RSpec.describe "garden show" do
     PlotPlant.create!(plot: plot_2, plant: plant_4)
 
     visit garden_path(garden_1)
-    save_and_open_page
+
     expect(page).to have_content("Rose")
     expect(page).to have_content("Tulip")
   

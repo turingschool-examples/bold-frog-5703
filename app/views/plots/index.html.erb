@@ -1,4 +1,13 @@
-<% @plots.plants.each do |plant| %>
-  <%= plant.plot.id %>
-  <%= plant.name %>
+<h1><%= "Plots" %></h1>
+<section id="plots">
+<% @plots.each do |plot| %>
+  <section id="plot-<%= plot.id %>">
+  <p><%= "Plot Number: #{plot.number}" %></p>
+  <p><%= "Plants in This Plot: " %></p><% plot.plants.each do |plant| %>
+    <section id="plant-<%= plant.id %>">
+    <%= plant.name %>
+    </section>
+  <% end %>
+  </section>
 <% end %>
+</section>

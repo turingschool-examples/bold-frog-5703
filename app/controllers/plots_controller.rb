@@ -1,8 +1,8 @@
 class PlotsController < ApplicationController
+  
   def index
-    binding.pry
-    @garden = Garden.find(params[:garden_id])
-    @plots = @garden.plots
-    binding.pry
+    @plots = Plot.all
+    # binding.pry
   end
+  
 end

@@ -4,7 +4,7 @@
   <div id="plot-<%= plot.id %>">
     <p>Plot Number: <%= plot.number %></p>
       <% plot.plants.each do |plant| %>
-      <div id="plot-plant<%= plant.id %>">
+      <div id="plot-plant<%= plant.plot_plant.id %>">
         <ul><%= plant.name %></ul>
       <% end %>
   </div>

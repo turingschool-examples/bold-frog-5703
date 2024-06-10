@@ -1,12 +1,9 @@
 class Garden < ApplicationRecord
    has_many :plots
-
+   has_many :plants, through: :plots
 
    def under_100_day_plants
-# FROM Plants to gardens I need to run through all tables. Multiple JOIN
-# WHERE days_to_harvest < 100
-# SELECT plant.name, plant.days_to_harvest
-# DISTINCT Plant.name
-
+      # binding.pry
+      plants.where("plants.days_to_harvest < 100").select(:name).distinct
    end
 end

@@ -8,15 +8,18 @@ RSpec.describe "garden show" do
     plant_1 = Plant.create!(name: "Rose", description: "smells good", days_to_harvest: 10)
     plant_2 = Plant.create!(name: "Tulip", description: "looks nice", days_to_harvest: 20)
     plant_3 = Plant.create!(name: "Pepper", description: "tastes good", days_to_harvest: 130)
+    plant_4 = Plant.create!(name: "Tulip", description: "looks nice", days_to_harvest: 20)
+
     PlotPlant.create!(plot: plot_1, plant: plant_1)
     PlotPlant.create!(plot: plot_1, plant: plant_2)
     PlotPlant.create!(plot: plot_1, plant: plant_3)
+    PlotPlant.create!(plot: plot_2, plant: plant_4)
 
-    visit garden_path
-
+    visit garden_path(garden_1)
+    save_and_open_page
     expect(page).to have_content("Rose")
     expect(page).to have_content("Tulip")
-    
+  
     expect(page).to_not have_content("Pepper")
   end
 end

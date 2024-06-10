@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "the admin merchants index" do
+RSpec.describe "the plots index" do
   before(:each) do
     @garden1 = Garden.create(name: "Huntington Garden", organic: true)
     @garden2 = Garden.create(name: "Tivoli Garden", organic: false)

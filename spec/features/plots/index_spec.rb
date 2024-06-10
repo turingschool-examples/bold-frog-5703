@@ -31,22 +31,20 @@ RSpec.describe Plot do
   # [x]I see a button to remove that plant from that plot
   # [x]When I click on that button
   # [x]I'm returned to the plots index page
-  # []And I no longer see that plant listed under that plot,
-  # []And I still see that plant's name under other plots that is was associated with.
-  
-  # Note: you do not need to test for any sad paths or implement any flash messages. 
+  # [x]And I no longer see that plant listed under that plot,
+  # [x]And I still see that plant's name under other plots that is was associated with.
   
   it "removes a plant from a plot" do
     # require 'pry'; binding.pry
-    within "#plot-#{@plot1.id}" do
-      within "#plot-plant#{@plotplant1.id}" do
+    within "#plot-#{@plot1.id} #plot-plant#{@plotplant1.id}" do
+      # within "#plot-plant#{@plotplant1.id}" do
         expect(page).to have_button("Delete Plant")
         click_button "Delete Plant", id: "delete-plant-#{@plotplant1.id}"
-      end
+      # end
     end
     
     expect(current_path).to eq("/plots")
-    
+    # save_and_open_page
     within "#plot-#{@plot1.id}" do
       expect(page).to_not have_content("Purple Beauty Sweet Bell Pepper")
     end

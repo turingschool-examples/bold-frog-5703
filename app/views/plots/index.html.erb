@@ -7,6 +7,7 @@
       <div id="plot-plant<%= plot_plant.id %>">
         <ul><%= plot_plant.plant.name %></ul>
         <ul><%= button_to "Delete Plant", plot_plot_plant_path(plot, plot_plant), method: :delete, id: "delete-plant-#{plot_plant.id}" %></ul>
+      </div>
       <% end %>
   </div>
 <% end %>

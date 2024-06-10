@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Garden do
   before(:each) do
-    @garden1 = Garden.create!(name: "Turing COmmunity Garden", organic: true)
+    @garden1 = Garden.create!(name: "Turing Community Garden", organic: true)
 
     @plot1 = Plot.create!(number: 11, size: "Large", direction: "East", garden: @garden1)
     @plot2 = Plot.create!(number: 22, size: "Medium", direction: "North", garden: @garden1)
@@ -27,10 +27,10 @@ RSpec.describe Garden do
   #   User Story 3, Garden's Plants
 
   # As a visitor
-  # When I visit a garden's show page ('/gardens/:id')
-  # Then I see a list of plants that are included in that garden's plots
-  # And I see that this list is unique (no duplicate plants)
-  # And I see that this list only includes plants that take less than 100 days to harvest
+  # [x]When I visit a garden's show page ('/gardens/:id')
+  # [x]Then I see a list of plants that are included in that garden's plots
+  # [x]And I see that this list is unique (no duplicate plants)
+  # [x]And I see that this list only includes plants that take less than 100 days to harvest
 
   it 'shows plants that take less than 100 days to harvest' do
     expect(page).to have_content(@plant1.name)

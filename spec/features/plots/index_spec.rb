@@ -21,6 +21,7 @@ RSpec.describe "Plots Index Page" do
                 expect(page).to_not have_content(tomato.name)
             end
         end
+        
         it "I see a button to remove a plant from a plot" do
             garden = Garden.create!(name: "Garrett's Secret Remote Off Grid Garden", organic: true)
             plot_1 = garden.plots.create!(number: 1, size: "Large", direction: "North")

@@ -25,5 +25,36 @@ RSpec.describe "Garden Show Page" do
                 expect(page).to_not have_content(tomato.name)
             end
         end
+
+        it "I see a list of plants that show in multiple plotes sorted most to least" do
+            garden = Garden.create!(name: "Garrett's Secret Remote Off Grid Garden", organic: true)
+            plot_1 = garden.plots.create!(number: 1, size: "Large", direction: "North")
+            plot_2 = garden.plots.create!(number: 2, size: "Large", direction: "South")
+            plot_3 = garden.plots.create!(number: 3, size: "Large", direction: "South")
+            plot_4 = garden.plots.create!(number: 4, size: "Large", direction: "South")
+
+            plot_1.plants.create!(name: "Pepper", description: "Needs sun", days_to_harvest: 32)
+            plot_1.plants.create!(name: "Cucumber", description: "Needs water", days_to_harvest: 95)
+            plot_1.plants.create!(name: "Mysterious Plant", description: "Needs water", days_to_harvest: 365)
+
+            plot_2.plants.create!(name: "Tomato", description: "Needs water", days_to_harvest: 105)
+            plot_2.plants.create!(name: "Pepper", description: "Needs sun", days_to_harvest: 32)
+            plot_2.plants.create!(name: "Cucumber", description: "Needs water", days_to_harvest: 95)
+
+            plot_3.plants.create!(name: "Pepper", description: "Needs sun", days_to_harvest: 32)
+            plot_3.plants.create!(name: "Cucumber", description: "Needs water", days_to_harvest: 95)
+
+            plot_4.plants.create!(name: "Pepper", description: "Needs sun", days_to_harvest: 32)
+            
+
+            visit "/gardens/#{garden.id}"
+
+            within("#plant_counter") do
+                expect(page).to have_content("Pepper: 4")
+                expect(page).to have_content("Cucumber: 3")
+                expect(page).to have_content("Tomato: 2")
+                expect(page).to_not have_content("Mysterious Plant: 1")
+            end
+        end
     end
 end

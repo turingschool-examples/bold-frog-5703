@@ -10,6 +10,7 @@ RSpec.describe "the garden show page" do
     @plot3 = Plot.create(number: 30, size: "Large", direction: "East", garden_id: @garden1.id)
     @plot4 = Plot.create(number: 40, size: "Small", direction: "West", garden_id: @garden2.id)
     @plot5 = Plot.create(number: 50, size: "Medium", direction: "North", garden_id: @garden2.id)
+    @plot6 = Plot.create(number: 60, size: "Medium", direction: "North", garden_id: @garden2.id)
 
     @plant1 = Plant.create(name: "Daisy", description: "beautiful flower", days_to_harvest: 70)
     @plant2 = Plant.create(name: "Lily", description: "alluring flower", days_to_harvest: 75)
@@ -28,6 +29,7 @@ RSpec.describe "the garden show page" do
     PlotPlant.create(plot_id: @plot4.id, plant_id: @plant8.id)
     PlotPlant.create(plot_id: @plot5.id, plant_id: @plant1.id)
     PlotPlant.create(plot_id: @plot5.id, plant_id: @plant7.id)
+    PlotPlant.create(plot_id: @plot6.id, plant_id: @plant7.id)
   end
 
   it "shows a unique list of all plants in that garden's plots" do
@@ -46,6 +48,12 @@ RSpec.describe "the garden show page" do
   it "will only include plants that take less than 100 days to harvest" do
     visit garden_path(@garden2)
     expect(page).to_not have_content("Peony")
+  end
+
+  it "will order plants based on how many times they appear in plots" do
+    visit garden_path(@garden2)
+    expect("Azalea").to appear_before("Daisy")
+    expect("Daisy").to appear_before("Violet")
   end
 
 end

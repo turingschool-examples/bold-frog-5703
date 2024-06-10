@@ -15,6 +15,7 @@ RSpec.describe Garden, type: :model do
     @plot3 = Plot.create(number: 30, size: "Large", direction: "East", garden_id: @garden1.id)
     @plot4 = Plot.create(number: 40, size: "Small", direction: "West", garden_id: @garden2.id)
     @plot5 = Plot.create(number: 50, size: "Medium", direction: "North", garden_id: @garden2.id)
+    @plot6 = Plot.create(number: 60, size: "Medium", direction: "North", garden_id: @garden2.id)
 
     @plant1 = Plant.create(name: "Daisy", description: "beautiful flower", days_to_harvest: 70)
     @plant2 = Plant.create(name: "Lily", description: "alluring flower", days_to_harvest: 75)
@@ -33,11 +34,18 @@ RSpec.describe Garden, type: :model do
     PlotPlant.create(plot_id: @plot4.id, plant_id: @plant8.id)
     PlotPlant.create(plot_id: @plot5.id, plant_id: @plant1.id)
     PlotPlant.create(plot_id: @plot5.id, plant_id: @plant7.id)
+    PlotPlant.create(plot_id: @plot6.id, plant_id: @plant7.id)
   end
 
   describe "plants_list" do
     it "returns a list of unique plants, all of which take less than 100 days to harvest" do
       expect(@garden2.plants_list).to eq([@plant1, @plant5, @plant6, @plant7])
+    end
+  end
+
+  describe "sorted_plants" do
+    it "returns a list sorted by how many time plants appear in garden's plots" do
+      expect(@garden2.sorted_plants).to eq([@plant7, @plant1, @plant5, @plant6])
     end
   end
 end

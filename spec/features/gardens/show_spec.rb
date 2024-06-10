@@ -33,10 +33,10 @@ RSpec.describe Garden do
   # [x]And I see that this list only includes plants that take less than 100 days to harvest
 
   it 'shows plants that take less than 100 days to harvest' do
-    expect(page).to have_content(@plant1.name)
-    expect(page).to have_content(@plant2.name)
-    expect(page).to have_content(@plant3.name)
-    expect(page).to have_content(@plant4.name)
+    expect(page).to have_content(@plant1.name, count:1)
+    expect(page).to have_content(@plant2.name, count:1)
+    expect(page).to have_content(@plant3.name, count:1)
+    expect(page).to have_content(@plant4.name, count:1)
 
     expect(page).to_not have_content(@plant5.name)
 

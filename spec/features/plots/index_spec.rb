@@ -36,10 +36,10 @@ RSpec.describe Plot do
   
   it "removes a plant from a plot" do
     # require 'pry'; binding.pry
-    within "#plot-#{@plot1.id} #plot-plant#{@plotplant1.id}" do
+    within "#plot-#{@plot1.id} #plot-plant#{@plant1.id}" do
       # within "#plot-plant#{@plotplant1.id}" do
         expect(page).to have_button("Delete Plant")
-        click_button "Delete Plant", id: "delete-plant-#{@plotplant1.id}"
+        click_button "Delete Plant", id: "delete-plant-#{@plant1.id}"
       # end
     end
     

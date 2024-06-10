@@ -30,12 +30,34 @@ RSpec.describe "plots index page" do
     it "can display a list of all plot numbers" do
       visit plots_path
 
-      within ("##{@plot1.id}") do
+      within ("#plot_#{@plot1.id}") do
         expect(page).to have_content(@plant1.name)
         expect(page).to have_content(@plant2.name)
 
         expect(page).to_not have_content(@plant3.name)
         expect(page).to_not have_content(@plant4.name)
+      end
+
+      save_and_open_page
+    end
+
+    it "has a button to remove a plant from a plot, not all plots" do
+      visit plots_path
+
+      save_and_open_page
+
+      within ("#plot_#{@plot1.id}") do
+        expect(page).to have_content(@plant1.name)
+        expect(page).to have_content(@plant2.name)
+
+        expect(page).to_not have_content(@plant3.name)
+        expect(page).to_not have_content(@plant4.name)
+        
+        within("#plant_#{@plant1.id}") do
+          click_button 'Remove'
+        end
+
+        expect(page).to_not have_content(@plant1.name)
       end
 
       save_and_open_page

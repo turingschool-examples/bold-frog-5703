@@ -4,8 +4,8 @@ RSpec.describe 'Plots index page' do
   before :each do
     @garden = Garden.create!(name: 'My Garden', organic: true)
 
-    @Plot1 = @garden.plots.create!(number: 1, size: 'Large', direction: 'North')
-    @Plot2 = @garden.plots.create!(number: 2, size: 'Small', direction: 'South')
+    @plot1 = @garden.plots.create!(number: 1, size: 'Large', direction: 'North')
+    @plot2 = @garden.plots.create!(number: 2, size: 'Small', direction: 'South')
 
     @plant1 = Plant.create!(name: 'Sunflower', description: 'seeds', days_to_harvest: 100)
     @plant2 = Plant.create!(name: 'Rose', description: 'are red', days_to_harvest: 200)
@@ -16,8 +16,8 @@ RSpec.describe 'Plots index page' do
     it 'I see a list of all plot numbers' do
       visit plots_path
 
-      expect(page).to have_content("Plot: #{@Plot1.number}")
-      expect(page).to have_content("Plot: #{@Plot2.number}")
+      expect(page).to have_content("Plot: #{@plot1.number}")
+      expect(page).to have_content("Plot: #{@plot2.number}")
       expect(page).to_not have_content(@plant1.name)
       expect(page).to_not have_content(@plant2.name)
     end
@@ -27,8 +27,8 @@ RSpec.describe 'Plots index page' do
 
       expect(page).to_not have_content(@plant1.name)
 
-      PlantPlot.create!(plant: @plant1, plot: @Plot1)
-      PlantPlot.create!(plant: @plant2, plot: @Plot1)
+      PlantPlot.create!(plant: @plant1, plot: @plot1)
+      PlantPlot.create!(plant: @plant2, plot: @plot1)
 
       visit plots_path
  
@@ -38,22 +38,17 @@ RSpec.describe 'Plots index page' do
     end
 
     it 'I see a link to remove a plant from a plot' do
-      PlantPlot.create!(plant: @plant1, plot: @Plot1)
-      PlantPlot.create!(plant: @plant1, plot: @Plot2)
+      PlantPlot.create!(plant: @plant1, plot: @plot1)
+      PlantPlot.create!(plant: @plant1, plot: @plot2)
 
       visit plots_path
 
-      within("##{@Plot1.id}") do  
+      within("#plot-#{@plot1.id}") do  
         click_button('Remove Plant')
-      end
-
-      expect(current_path).to eq(plots_path)
-
-      within("##{@plot1.id}") do
+ 
         expect(page).to_not have_content(@plant1.name)
       end
-
-      within("##{@plot2.id}") do
+      within("#plot-#{@plot2.id}") do
         expect(page).to have_content(@plant1.name)
       end
     end

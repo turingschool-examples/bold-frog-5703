@@ -7,9 +7,9 @@ RSpec.describe 'Plots index page' do
     @Plot1 = @garden.plots.create!(number: 1, size: 'Large', direction: 'North')
     @Plot2 = @garden.plots.create!(number: 2, size: 'Small', direction: 'South')
 
-    @plant1 = Plant.create!(name: 'Sunflower', description: 'seeds')
-    @plant2 = Plant.create!(name: 'Rose', description: 'are red')
-    @plant3 = Plant.create!(name: 'Violet', description: 'are blue')
+    @plant1 = Plant.create!(name: 'Sunflower', description: 'seeds', days_to_harvest: 100)
+    @plant2 = Plant.create!(name: 'Rose', description: 'are red', days_to_harvest: 200)
+    @plant3 = Plant.create!(name: 'Violet', description: 'are blue', days_to_harvest: 90)
   end
 
   describe 'As a User' do

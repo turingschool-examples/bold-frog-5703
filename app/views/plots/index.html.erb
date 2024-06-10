@@ -6,6 +6,7 @@
   <p><%= "Plants in This Plot: " %></p><% plot.plants.each do |plant| %>
     <section id="plant-<%= plant.id %>">
     <%= plant.name %>
+    <%= button_to "Remove", plot_plant_path(plot, plant), method: :delete %>
     </section>
   <% end %>
   </section>

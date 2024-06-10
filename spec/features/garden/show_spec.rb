@@ -43,6 +43,7 @@ RSpec.describe "Garden Show Page" do
 
             plot_3.plants.create!(name: "Pepper", description: "Needs sun", days_to_harvest: 32)
             plot_3.plants.create!(name: "Cucumber", description: "Needs water", days_to_harvest: 95)
+            plot_3.plants.create!(name: "Tomato", description: "Needs water", days_to_harvest: 365)
 
             plot_4.plants.create!(name: "Pepper", description: "Needs sun", days_to_harvest: 32)
             
@@ -53,7 +54,7 @@ RSpec.describe "Garden Show Page" do
                 expect(page).to have_content("Pepper: 4")
                 expect(page).to have_content("Cucumber: 3")
                 expect(page).to have_content("Tomato: 2")
-                expect(page).to_not have_content("Mysterious Plant: 1")
+                expect(page).to have_content("Mysterious Plant: 1")
             end
         end
     end

@@ -6,4 +6,10 @@
             <% end %>
         </ul>
     </div>
+    <div id="plant_counter">
+        <ul>
+            <% @garden.plant_counter.each do |plant| %>
+                <li><%= plant.name %>: <%= plant.count %></li>
+            <% end %>
+        </ul>
 </section>

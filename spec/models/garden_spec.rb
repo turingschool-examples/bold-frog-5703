@@ -40,6 +40,7 @@ RSpec.describe Garden, type: :model do
 
       plot_3.plants.create!(name: "Pepper", description: "Needs sun", days_to_harvest: 32)
       plot_3.plants.create!(name: "Cucumber", description: "Needs water", days_to_harvest: 95)
+      plot_3.plants.create!(name: "Tomato", description: "Needs water", days_to_harvest: 105)
 
       plot_4.plants.create!(name: "Pepper", description: "Needs sun", days_to_harvest: 32)
 

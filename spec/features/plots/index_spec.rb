@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "the admin merchants index" do
+RSpec.describe "the plots index" do
   before(:each) do
     @garden = Garden.create!(name: "Garden", organic: true )
     @plot1 = @garden.plots.create!(number: "1", size: "4x4", direction: "up" )

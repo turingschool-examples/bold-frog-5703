@@ -24,9 +24,9 @@ RSpec.describe "Garden Show Page" do
         expect(page).to have_content("Carrot")
         expect(page).to have_content("Pepper")
         expect(page).to_not have_content("Corn")
-    end
 
-    within "#plants" do
-        expect(page).to have_css("li", count: 3)
+        within "#plants" do
+            expect(page).to have_css("li", count: 3)
+        end
     end
 end

@@ -16,7 +16,7 @@ RSpec.describe "Gardens Show Page" do
         PlotPlant.create!(plot_id: plot_1.id, plant_id: plant_2.id)
         PlotPlant.create!(plot_id: plot_2.id, plant_id: plant_3.id)
 
-        visit garden_path
+        visit garden_path(garden)
 
         within(".garden_plants_list") do
           expect(page).to have_content("Plant Name: Purple Beauty Sweet Bell Pepper")
@@ -39,7 +39,7 @@ RSpec.describe "Gardens Show Page" do
         PlotPlant.create!(plot_id: plot_2.id, plant_id: plant_3.id)
         PlotPlant.create!(plot_id: plot_2.id, plant_id: plant_2.id)
 
-        visit garden_path
+        visit garden_path(garden)
 
         within(".garden_plants_list") do
           expect(page).to have_content("Plant Name: Purple Beauty Sweet Bell Pepper")
@@ -64,7 +64,7 @@ RSpec.describe "Gardens Show Page" do
         PlotPlant.create!(plot_id: plot_2.id, plant_id: plant_2.id)
         PlotPlant.create!(plot_id: plot_2.id, plant_id: plant_4.id)
 
-        visit garden_path
+        visit garden_path(garden)
 
         within(".garden_plants_list") do
           expect(page).to have_content("Plant Name: Purple Beauty Sweet Bell Pepper")
@@ -72,5 +72,6 @@ RSpec.describe "Gardens Show Page" do
           expect(page).to have_content("Plant Name: BEANS")
         end
       end
+    end
   end
 end

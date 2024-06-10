@@ -3,8 +3,11 @@
   <% @plots.each do |plot| %>
     <section id="plot-<%= plot.id %>">
       <p>Plot number: <%= plot.number %></p>
-       <p>Plants: <% plot.plants.each do |plant| %></p>
-          <%= plant.name %>
-      <% end %>
+        <p>Plants: <% plot.plants.each do |plant| %></p>
+          <section id="plant-<%= plant.id %>">
+            <%= plant.name %>
+            <%= button_to "Delete", plot_plot_plant_path(plot, plant), method: :delete %>
+          </section>
+        <% end %>
     </section>
   <% end %>

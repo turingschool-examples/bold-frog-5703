@@ -1,0 +1,11 @@
+<section>
+    <h1>Plots</h1>
+    <% @plots.each_with_index do |plot, index| %>
+        <ul id="plot_<%=index + 1%>">
+            <li><%= plot.number %></li>
+            <% plot.plants.each do |plant|%>
+                <li><%= plant.name %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</section>

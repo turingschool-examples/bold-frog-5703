@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-Rspec.describe 'Gardens show page' do
+RSpec.describe 'Gardens show page' do
   before :each do
     @garden = Garden.create!(name: 'My Garden', organic: true)
 
@@ -21,9 +21,10 @@ Rspec.describe 'Gardens show page' do
     it 'I see a list of plants that are included in that garden plots' do
       visit garden_path(@garden)
 
-      expect(page).to have_content(plant1.name)
-      expect(page).to have_content(plant2.name)
-      expect(page).to have_content(plant3.name)
+      expect(page).to have_content(@plant1.name)
+      expect(page).to have_content(@plant3.name)
+
+      expect(page).to_not have_content(@plant2.name)
     end
   end
 end

@@ -1,0 +1,9 @@
+<section>
+    <div id="garden_plants">
+        <ul>
+            <% @garden.plants_under_100_days.each do |plant| %>
+                <li><%= plant %></li>
+            <% end %>
+        </ul>
+    </div>
+</section>

@@ -21,20 +21,8 @@ RSpec.describe "Plots Index Page" do
                 expect(page).to_not have_content(tomato.name)
             end
         end
-        # User Story 2, Remove a Plant from a Plot
-
-        # As a visitor
-        # When I visit the plots index page
-        # Next to each plant's name
-        # I see a button to remove that plant from that plot
-        # When I click on that button
-        # I'm returned to the plots index page
-        # And I no longer see that plant listed under that plot,
-        # And I still see that plant's name under other plots that is was associated with.
-
-        # Note: you do not need to test for any sad paths or implement any flash messages. 
         it "I see a button to remove a plant from a plot" do
-            garden = Garden.create!(name: "Turing Community Garden", organic: true)
+            garden = Garden.create!(name: "Garrett's Secret Remote Off Grid Garden", organic: true)
             plot_1 = garden.plots.create!(number: 1, size: "Large", direction: "North")
             plot_2 = garden.plots.create!(number: 2, size: "Large", direction: "South")
 

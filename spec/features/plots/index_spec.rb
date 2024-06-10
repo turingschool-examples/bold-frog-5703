@@ -53,7 +53,7 @@ RSpec.describe "Plots Index Page" do
 
                 expect(page).to_not have_content(tomato.name)
 
-                click_button "Remove"
+                click_button "Remove #{pepper.name}"
             end
 
             expect(current_path).to eq("/plots")

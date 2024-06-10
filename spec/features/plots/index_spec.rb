@@ -27,14 +27,17 @@ RSpec.describe "Plots Index Page" do
     it "should remove a plant from a plot" do
         visit plots_path
 
-        within("#plot-#{@plot1.id}") do
-            within("#plant-#{@plant1.id}") do
-                click_button "Remove"
-            end
-        end
+        # save_and_open_page
+
+        # within("#plot-#{@plot1.id}") do
+        #     within("li#plant-#{@plant1.id}") do
+                click_link "Remove Tomato", match: :first
+        #     end
+        # end
 
         expect(current_path).to eq(plots_path)
-        within("#plot-#{@plot.id}") do
+        
+        within("#plot-#{@plot1.id}") do
             expect(page).to_not have_content("Tomato")
         end
         within("#plot-#{@plot2.id}") do

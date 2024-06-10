@@ -3,8 +3,9 @@ require "rails_helper"
 RSpec.describe "Plots Index Page" do
     describe "As a Visitor" do
         it "When I visit the index I see a list of all the plot numbers and all the anmes of all the plants in that plot" do
-            plot_1 = Plot.create!(number: 1, size: "Large", direction: "North")
-            plot_2 = Plot.create!(number: 2, size: "Large", direction: "South")
+            garden = Garden.create!(name: "Turing Community Garden", organic: true)
+            plot_1 = garden.plots.create!(number: 1, size: "Large", direction: "North")
+            plot_2 = garden.plots.create!(number: 2, size: "Large", direction: "South")
 
             pepper = plot_1.plants.create!(name: "Pepper", description: "Needs sun")
             cucumber = plot_1.plants.create!(name: "Cucumber", description: "Needs water")

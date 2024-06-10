@@ -2,8 +2,6 @@
 <ul>
   <% @plots.each do |plot| %>
     <li>Plot: <%= plot.number %></li>
-    <li>Size: <%= plot.size %></li>
-    <li>Direction: <%= plot.direction %></li>
     <li>Plants:</li>
     <ol>
       <% plot.plants.each do |plant| %>

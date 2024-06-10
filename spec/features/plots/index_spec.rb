@@ -16,8 +16,8 @@ RSpec.describe 'Plots index page' do
     it 'I see a list of all plot numbers' do
       visit plots_path
 
-      expect(page).to have_content(@Plot1.number)
-      expect(page).to have_content(@Plot2.number)
+      expect(page).to have_content("Plot: #{@Plot1.number}")
+      expect(page).to have_content("Plot: #{@Plot2.number}")
       expect(page).to_not have_content(@plant1.name)
       expect(page).to_not have_content(@plant2.name)
     end
@@ -31,7 +31,7 @@ RSpec.describe 'Plots index page' do
       PlantPlot.create!(plant: @plant2, plot: @Plot1)
 
       visit plots_path
- save_and_open_page
+ 
       expect(page).to have_content(@plant1.name)
       expect(page).to have_content(@plant2.name)
       expect(page).to_not have_content(@plant3.name)

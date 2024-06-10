@@ -44,7 +44,7 @@ RSpec.describe Garden, type: :model do
   end
 
   describe "sorted_plants" do
-    it "returns a list sorted by how many time plants appear in garden's plots" do
+    it "returns a list sorted by how many times plants appear in garden's plots" do
       expect(@garden2.sorted_plants).to eq([@plant7, @plant1, @plant5, @plant6])
     end
   end

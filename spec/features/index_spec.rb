@@ -74,4 +74,35 @@ RSpec.describe "the admin merchants index" do
     end
   end
 
+  it "should have buttons to delete each plant" do
+    visit plots_path
+
+    within "#plot-#{@plot1.id}" do
+      expect(page).to have_button("Delete Rose")
+      expect(page).to have_button("Delete Iris")
+    end
+
+    within "#plot-#{@plot2.id}" do
+      expect(page).to have_button("Delete Azalea")
+    end
+  end
+
+  it "should be able to delete a plant from a plot without it affecting other plots" do
+    visit plots_path
+
+    within "#plot-#{@plot4.id}" do
+      click_button "Delete Iris"
+    end
+
+    expect(current_path).to eq(plots_path)
+
+    within "#plot-#{@plot4.id}" do
+      expect(page).to_not have_content("Iris")
+    end
+
+    within "#plot-#{@plot1.id}" do
+      expect(page).to have_content("Iris")
+    end
+  end
+
 end

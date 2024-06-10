@@ -1,0 +1,8 @@
+<h1><%= @garden.name %> Garden</h1>
+
+<h2>Plants in this Garden (harvests in less than 100 days)</h2>
+<ul id="garden_<%=@garden.id%>">
+  <% @plants.each do |plant| %>
+    <li><%= plant.name %></li>
+  <% end %>
+</ul>

@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   resources :plots, only: [:index] do
     resources :plot_plants, only: [:destroy], param: :plant_id
   end
+
+  resources :gardens, only: [:show]
 end
 

@@ -12,6 +12,7 @@ RSpec.describe 'Gardens show page' do
     @plant3 = Plant.create!(name: 'Violet', description: 'are blue', days_to_harvest: 90)
 
     PlantPlot.create!(plant: @plant1, plot: @plot1)
+    PlantPlot.create!(plant: @plant1, plot: @plot2)
     PlantPlot.create!(plant: @plant2, plot: @plot1)
     PlantPlot.create!(plant: @plant3, plot: @plot2)
 
@@ -21,8 +22,8 @@ RSpec.describe 'Gardens show page' do
     it 'I see a list of plants that are included in that garden plots' do
       visit garden_path(@garden)
 
-      expect(page).to have_content(@plant1.name)
-      expect(page).to have_content(@plant3.name)
+      expect(page).to have_content(@plant1.name, count: 1)
+      expect(page).to have_content(@plant3.name, count: 1)
 
       expect(page).to_not have_content(@plant2.name)
     end

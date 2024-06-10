@@ -1,0 +1,7 @@
+<section id="garden-<%= @garden.id %>">
+<h1><%= @garden.name %></h1>
+<p> Plants: </p>
+<% @garden.ordered_plants.each do |plant| %> 
+    <%= plant.name %>
+<% end %>
+</section>

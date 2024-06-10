@@ -1,3 +1,4 @@
 class Plant < ApplicationRecord
-  has_many :plots, through: :plants_plots
+  has_many :plant_plots
+  has_many :plots, through: :plant_plots
 end

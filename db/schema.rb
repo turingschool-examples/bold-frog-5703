@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_10_151910) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_10_155744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,19 +21,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_151910) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "plant_plots", id: false, force: :cascade do |t|
+    t.bigint "plant_id", null: false
+    t.bigint "plot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plant_id"], name: "index_plant_plots_on_plant_id"
+    t.index ["plot_id"], name: "index_plant_plots_on_plot_id"
+  end
+
   create_table "plants", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.integer "days_to_harvest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "plants_plots", id: false, force: :cascade do |t|
-    t.bigint "plant_id", null: false
-    t.bigint "plot_id", null: false
-    t.index ["plant_id"], name: "index_plants_plots_on_plant_id"
-    t.index ["plot_id"], name: "index_plants_plots_on_plot_id"
   end
 
   create_table "plots", force: :cascade do |t|
@@ -46,5 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_151910) do
     t.index ["garden_id"], name: "index_plots_on_garden_id"
   end
 
+  add_foreign_key "plant_plots", "plants"
+  add_foreign_key "plant_plots", "plots"
   add_foreign_key "plots", "gardens"
 end

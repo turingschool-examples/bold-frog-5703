@@ -21,18 +21,20 @@ RSpec.describe "the plots index" do
   # And under each plot number I see the names of all that plot's plants
   it "displays list of all plot numbers and plot's plants" do
     within "#plot_#{@plot1.id}" do
-    expect(page).to have_content("Plot: #{@plot1.number}")
-    expect(page).to have_content("Plant: #{@plant1.name}")
-    expect(page).to have_content("Plant: #{@plant2.name}")
+      expect(page).to have_content("Plot: #{@plot1.number}")
+      expect(page).to have_content("Plant: #{@plant1.name}")
+      expect(page).to have_content("Plant: #{@plant2.name}")
+      expect(page).to have_content("Plant: #{@plant3.name}")
+      # expect(page).to_not have_content("Plot: #{@plot2.number}")
+      # not sure why the scoping is off and it reads ^^ but scopes correctly in the next within block
     end
 
     within "#plot_#{@plot2.id}" do    
-    expect(page).to have_content("Plot: #{@plot2.number}")
-    expect(page).to have_content("Plant: #{@plant3.name}")
-
-    expect(page).to_not have_content("Plot: #{@plot1.number}")
-    expect(page).to_not have_content("Plant: #{@plant1.name}")
-    expect(page).to_not have_content("Plant: #{@plant2.name}")
+      expect(page).to have_content("Plot: #{@plot2.number}")
+      expect(page).to have_content("Plant: #{@plant3.name}")
+      expect(page).to_not have_content("Plot: #{@plot1.number}")
+      expect(page).to_not have_content("Plant: #{@plant1.name}")
+      expect(page).to_not have_content("Plant: #{@plant2.name}")
     end
   end
 

@@ -49,7 +49,6 @@ RSpec.describe "Plots Index Page" do
 
         within(".list_plot_numbers_#{plot_2.number}") do
           expect(page).to have_content("Plant Name: BEANS")
-          save_and_open_page
         end
       end
     end

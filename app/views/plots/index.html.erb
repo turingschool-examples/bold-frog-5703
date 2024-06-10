@@ -1,0 +1,13 @@
+<h1>Plots Index Page</h1>
+
+<% @plots.each do |plot| %>
+  <div id="plot-<%= plot.id %>">
+    <p>Plot Number: <%= plot.number %></p>
+      <% plot.plants.each do |plant| %>
+      <div id="plot-plant<%= plant.id %>">
+        <ul><%= plant.name %></ul>
+        <ul><%= button_to "Delete Plant", plot_plant_path(plot_id: plot.id, plant_id: plant.id), method: :delete, id: "delete-plant-#{plant.id}" %></ul>
+      </div>
+      <% end %>
+  </div>
+<% end %>

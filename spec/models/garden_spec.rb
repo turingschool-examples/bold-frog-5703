@@ -5,7 +5,7 @@ RSpec.describe Garden, type: :model do
     it { should have_many(:plots) }
   end
 
-  describe '#plants_with_harvest_less_than_100_days' do
+  describe '#harvests_in_less_than_100_days' do
     before do
       @garden1 = Garden.create!(name: "Movsar's Garden")
       @garden2 = Garden.create!(name: "Evleov's Garden")
